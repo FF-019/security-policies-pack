@@ -2,331 +2,132 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Enterprise security policy pack: access control, data classification, incident response and risk management, mapped to NCA ECC-2:2024, ISO 27001:2022 and NIST CSF 2.0.">
-<meta name="author" content="Fatima Asiri">
-<meta property="og:title" content="Security Policies Pack · Fatima Asiri">
-<title>Security Policies Pack</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Policy Workspace · Security Policies Pack</title>
+<meta name="description" content="Security policy register, control library, risk register and evidence tracker mapped to NCA ECC-2:2024, ISO/IEC 27001:2022 and NIST CSF 2.0.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --paper:#F6F6F2; --sheet:#FFFFFF; --ink:#131C2E; --ink2:#4B5567; --ink3:#8590A2; --rule:#DFE1DA; --rule2:#ECEDE8;
-  --accent:#1F4E8C; --accentS:#E6EDF6; --seal:#A3261B; --sealS:#F8E7E4;
-  --ok:#2F7D4F; --okS:#E3F1E8; --warn:#B7791F; --warnS:#FBF0DC; --hi:#C4501E; --hiS:#FBE7DC; --crit:#B42318; --critS:#FBE3E1;
-  --display:"IBM Plex Serif",Georgia,serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
-}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#0E131C; --sheet:#151C28; --ink:#E8ECF2; --ink2:#A9B3C2; --ink3:#6F7B8E; --rule:#263043; --rule2:#1D2533;
-  --accent:#7FA9E6; --accentS:#1A2A44; --seal:#F07B6E; --sealS:#3A1D1B;
-  --ok:#5CC08A; --okS:#132C1F; --warn:#E4B05A; --warnS:#33280F; --hi:#EE8A5A; --hiS:#3A2214; --crit:#F2706A; --critS:#3B1716; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#0E131C; --sheet:#151C28; --ink:#E8ECF2; --ink2:#A9B3C2; --ink3:#6F7B8E; --rule:#263043; --rule2:#1D2533;
-  --accent:#7FA9E6; --accentS:#1A2A44; --seal:#F07B6E; --sealS:#3A1D1B;
-  --ok:#5CC08A; --okS:#132C1F; --warn:#E4B05A; --warnS:#33280F; --hi:#EE8A5A; --hiS:#3A2214; --crit:#F2706A; --critS:#3B1716; color-scheme:dark}
+:root{--bg:#f6f7f9;--panel:#fff;--line:#e3e6eb;--line2:#eef0f3;--ink:#1b1f24;--ink2:#4b5563;--ink3:#7a828e;--nav:#11161c;--navInk:#b9c0ca;--navHi:#fff;--acc:#2456d6;--accBg:#edf2fd;--ok:#15803d;--okBg:#e8f5ec;--warn:#b45309;--warnBg:#fdf3e4;--bad:#b91c1c;--badBg:#fcebeb;--crit:#7f1d1d;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--panel:#161b22;--line:#262d36;--line2:#1d232b;--ink:#e6e9ee;--ink2:#a9b1bc;--ink3:#7d8692;--nav:#0b0e12;--accBg:#1a2540;--acc:#7aa2ff;--ok:#4ade80;--okBg:#12291b;--warn:#f0b35a;--warnBg:#2c2213;--bad:#f87171;--badBg:#2d1616;--crit:#fca5a5;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1318;--panel:#161b22;--line:#262d36;--line2:#1d232b;--ink:#e6e9ee;--ink2:#a9b1bc;--ink3:#7d8692;--nav:#0b0e12;--accBg:#1a2540;--acc:#7aa2ff;--ok:#4ade80;--okBg:#12291b;--warn:#f0b35a;--warnBg:#2c2213;--bad:#f87171;--badBg:#2d1616;--crit:#fca5a5;color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
-.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
-h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;letter-spacing:-.01em}
-p{margin:0}
-.mono{font-family:var(--mono)}
-.eyebrow{font:500 12px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
-button{font:inherit;color:inherit;cursor:pointer}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
-
-.mast{border-bottom:1px solid var(--rule);background:var(--sheet)}
-.mast .wrap{display:flex;align-items:center;gap:16px;padding-block:14px;flex-wrap:wrap}
-.crest{width:30px;height:30px;border-radius:7px;background:var(--ink);color:var(--paper);display:grid;place-items:center;font:600 13px var(--mono)}
-.mast b{font-weight:600}
-.mast .meta{margin-left:auto;display:flex;gap:18px;font:12.5px var(--mono);color:var(--ink3);flex-wrap:wrap}
-
-.hero{padding-block:64px 40px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px;align-items:end}
-.hero h1{font-size:clamp(40px,5.6vw,72px);line-height:1.02;margin-top:16px}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero .lede{font-size:19px;color:var(--ink2);max-width:52ch;margin-top:22px}
-.status{background:var(--sheet);border:1px solid var(--rule);border-radius:14px;padding:20px 22px}
-.status table{width:100%;border-collapse:collapse;font-size:14px}
-.status td{padding:9px 0;border-bottom:1px solid var(--rule2)}
-.status tr:last-child td{border-bottom:0}
-.status td:last-child{text-align:right;font-family:var(--mono);font-size:13px;color:var(--ink2)}
-.pill{display:inline-flex;align-items:center;gap:6px;font:500 12px var(--mono);padding:3px 9px;border-radius:999px}
-.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
-.pill.ok{color:var(--ok);background:var(--okS)}
-
-.cover{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-bottom:56px}
-.cover div{padding:22px 20px}
-.cover div+div{border-left:1px solid var(--rule)}
-.cover b{display:block;font:600 34px/1.1 var(--display);font-variant-numeric:tabular-nums}
-.cover span{font-size:13.5px;color:var(--ink2)}
-
-.ws{display:grid;grid-template-columns:270px minmax(0,1fr);gap:36px;align-items:start;padding-bottom:72px}
-.index{position:sticky;top:20px}
-.index .eyebrow{margin-bottom:10px}
-.pol{display:grid;grid-template-columns:44px 1fr;gap:4px 10px;width:100%;text-align:left;background:none;border:1px solid transparent;border-radius:12px;padding:12px;margin-bottom:6px}
-.pol:hover{background:var(--sheet);border-color:var(--rule)}
-.pol[aria-selected="true"]{background:var(--sheet);border-color:var(--ink);box-shadow:inset 3px 0 0 var(--ink)}
-.pol .code{font:500 12px var(--mono);color:var(--ink3);grid-row:span 2;padding-top:3px}
-.pol b{font-weight:600;font-size:15px}
-.pol small{color:var(--ink3);font-size:12.5px}
-.legend{margin-top:22px;font-size:13px;color:var(--ink2);border-top:1px solid var(--rule);padding-top:16px;display:grid;gap:8px}
-.fw{display:inline-flex;font:500 11.5px var(--mono);padding:2px 7px;border-radius:5px;border:1px solid var(--rule);background:var(--sheet);color:var(--ink2);white-space:nowrap}
-.fw.nca{border-color:color-mix(in srgb,var(--ok) 45%,var(--rule));color:var(--ok)}
-.fw.iso{border-color:color-mix(in srgb,var(--accent) 45%,var(--rule));color:var(--accent)}
-.fw.nist{border-color:color-mix(in srgb,var(--warn) 50%,var(--rule));color:var(--warn)}
-
-.doc{background:var(--sheet);border:1px solid var(--rule);border-radius:16px;min-width:0}
-.doc-head{padding:30px 34px 24px;border-bottom:1px solid var(--rule)}
-.doc-head .top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.doc-head h2{font-size:clamp(28px,3.4vw,40px);margin-top:10px}
-.doc-head .purpose{color:var(--ink2);font-size:17px;max-width:62ch;margin-top:12px}
-.ctrl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:22px;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
-.ctrl div{padding:10px 14px;font-size:13px}
-.ctrl div+div{border-left:1px solid var(--rule)}
-.ctrl span{display:block;font:11px var(--mono);color:var(--ink3);text-transform:uppercase;letter-spacing:.06em}
-.stamp{font:600 11px var(--mono);letter-spacing:.1em;color:var(--seal);border:1.5px solid var(--seal);border-radius:6px;padding:5px 9px;transform:rotate(-2deg);align-self:flex-start;background:var(--sealS)}
-.sec{padding:26px 34px;border-bottom:1px solid var(--rule2)}
-.sec:last-child{border-bottom:0}
-.sec h3{font-size:20px;margin-bottom:14px;display:flex;gap:12px;align-items:baseline}
-.sec h3 .n{font:500 13px var(--mono);color:var(--ink3)}
-.stmt{display:grid;grid-template-columns:76px minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid var(--rule2)}
-.stmt:first-of-type{border-top:0}
-.stmt .id{font:500 13px var(--mono);color:var(--accent)}
-.stmt p{margin-bottom:8px}
-.maps{display:flex;flex-wrap:wrap;gap:6px}
-.raci{width:100%;border-collapse:collapse;font-size:14px}
-.raci th,.raci td{padding:9px 10px;border-bottom:1px solid var(--rule2);text-align:left;vertical-align:top}
-.raci th{font:500 11.5px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink3)}
-.raci td.r{font:600 13px var(--mono);text-align:center;width:52px}
-.r-R{color:var(--accent)}.r-A{color:var(--seal)}.r-C{color:var(--warn)}.r-I{color:var(--ink3)}
-.tablebox{overflow-x:auto}
-.scenario{background:var(--accentS);border-radius:12px;padding:16px 18px;font-size:15px}
-.scenario b{display:block;font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
-.kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.kv div{border:1px solid var(--rule);border-radius:10px;padding:12px 14px;font-size:14.5px}
-.kv span{display:block;font:11.5px var(--mono);color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
-
-.tool{border:1px solid var(--rule);border-radius:14px;padding:20px;background:var(--paper)}
-.tool .eyebrow{color:var(--accent);margin-bottom:6px}
-.tool h4{margin:0 0 4px;font:600 17px var(--body)}
-.tool .hint{font-size:13.5px;color:var(--ink2);margin-bottom:16px}
-.seg{display:flex;flex-wrap:wrap;gap:6px}
-.seg button{border:1px solid var(--rule);background:var(--sheet);border-radius:9px;padding:7px 12px;font-size:14px}
-.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.heat{display:grid;grid-template-columns:28px repeat(5,minmax(0,1fr));gap:4px;font:12px var(--mono)}
-.heat .cell{aspect-ratio:1.6;border-radius:6px;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:4px;padding:4px;position:relative;min-width:0}
-.heat .ax{display:grid;place-items:center;color:var(--ink3)}
-.dot{width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font:600 11px var(--mono);border:2px solid var(--sheet);cursor:pointer}
-.dot[aria-pressed="true"]{outline:2px solid var(--ink);outline-offset:2px}
-.lv-low{background:var(--okS)}.lv-med{background:var(--warnS)}.lv-high{background:var(--hiS)}.lv-crit{background:var(--critS)}
-.risklist{width:100%;border-collapse:collapse;font-size:14px;margin-top:16px}
-.risklist td,.risklist th{padding:9px 8px;border-bottom:1px solid var(--rule2);text-align:left;vertical-align:top}
-.risklist th{font:500 11.5px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink3)}
-.risklist tr.sel td{background:var(--accentS)}
-.tag{display:inline-flex;font:600 11.5px var(--mono);padding:2px 8px;border-radius:5px;white-space:nowrap}
-.t-low{color:var(--ok);background:var(--okS)}.t-med{color:var(--warn);background:var(--warnS)}.t-high{color:var(--hi);background:var(--hiS)}.t-crit{color:var(--crit);background:var(--critS)}
-.track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:14px 0}
-.track div{border-radius:8px;padding:10px;font-size:13px;background:var(--sheet);border:1px solid var(--rule);min-width:0}
-.track div b{display:block;font:500 11px var(--mono);color:var(--ink3);text-transform:uppercase;letter-spacing:.05em}
-.track div.on{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
-.track div.done{background:var(--okS);border-color:transparent}
-.log{font:13px/1.7 var(--mono);background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:12px 14px;max-height:220px;overflow:auto}
-.log .t{color:var(--ink3)}
-.log .ok{color:var(--ok)}.log .bad{color:var(--crit)}
-.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);border:0;border-radius:10px;padding:10px 16px;font-weight:600;font-size:14px}
-.btn.ghost{background:var(--sheet);color:var(--ink);border:1px solid var(--rule)}
-.btn:disabled{opacity:.4;cursor:default}
-.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.cls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
-.lbl{border-radius:12px;padding:18px;border:2px solid}
-.lbl .big{font:600 26px var(--display)}
-.lbl ul{margin:10px 0 0;padding-left:18px;font-size:14px}
-.L-PUBLIC{border-color:var(--ok);background:var(--okS)}.L-INTERNAL{border-color:var(--accent);background:var(--accentS)}
-.L-CONFIDENTIAL{border-color:var(--hi);background:var(--hiS)}.L-HIGHLY{border-color:var(--crit);background:var(--critS)}
-.ar{width:100%;border-collapse:collapse;font-size:14px}
-.ar td,.ar th{padding:9px 8px;border-bottom:1px solid var(--rule2);text-align:left}
-.ar th{font:500 11.5px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink3)}
-.flag{color:var(--crit);font:500 12.5px var(--mono)}
-
-.matrix-sec{padding-block:64px;border-top:1px solid var(--rule)}
-.matrix{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
-.matrix th,.matrix td{padding:11px 12px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
-.matrix th{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);background:var(--paper);position:sticky;top:0}
-.matrix td:first-child{font:500 13px var(--mono);color:var(--accent);white-space:nowrap}
-.foot{border-top:1px solid var(--rule);padding-block:34px 60px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;font-size:14px;color:var(--ink2)}
-.foot b{color:var(--ink)}
-
-@media (max-width:900px){
-  .hero{grid-template-columns:minmax(0,1fr);gap:28px;padding-top:40px}
-  .ws{grid-template-columns:minmax(0,1fr)}
-  .index{position:static;display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
-  .index .eyebrow,.legend{display:none}
-  .pol{min-width:210px;margin:0}
-  .cover{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .cover div:nth-child(3){border-left:0}
-  .cover div:nth-child(n+3){border-top:1px solid var(--rule)}
-  .ctrl,.kv,.cls{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .ctrl div:nth-child(3){border-left:0}.ctrl div:nth-child(n+3){border-top:1px solid var(--rule)}
-  .doc-head,.sec{padding-inline:20px}
-  .track{grid-template-columns:repeat(5,minmax(96px,1fr));overflow-x:auto}
-  .foot{grid-template-columns:minmax(0,1fr)}
-  .mast .meta{margin-left:0}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:14px/1.5 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+button{font:inherit;color:inherit}
+a{color:var(--acc)}
+.app{display:grid;grid-template-columns:232px 1fr;min-height:100vh}
+nav.side{background:var(--nav);color:var(--navInk);padding:18px 12px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:2px}
+.org{display:flex;align-items:center;gap:10px;padding:4px 8px 18px;color:var(--navHi)}
+.org .lg{width:28px;height:28px;border-radius:6px;background:#2456d6;display:grid;place-items:center;font-weight:600;font-size:13px;color:#fff}
+.org b{font-weight:600;font-size:14px;display:block}.org small{font-size:11.5px;color:var(--navInk)}
+.side h6{margin:14px 8px 6px;font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:#6b7480}
+.side a{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-radius:6px;color:var(--navInk);text-decoration:none;font-size:13.5px}
+.side a:hover{background:#1c232c;color:var(--navHi)}
+.side a[aria-current]{background:#222b36;color:var(--navHi)}
+.side a em{font-style:normal;font-size:11.5px;color:#7f8893}
+.side .foot{margin-top:auto;font-size:11.5px;color:#6b7480;padding:8px}
+main{min-width:0}
+header.top{display:flex;align-items:center;gap:12px;padding:12px 28px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
+.crumb{color:var(--ink3);font-size:13px}.crumb b{color:var(--ink);font-weight:500}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:6px;padding:6px 10px;width:260px;background:var(--bg);color:var(--ink3);font-size:13px}
+.search input{border:0;background:transparent;outline:0;color:var(--ink);font:inherit;width:100%}
+.menu{display:none;border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:6px 10px;cursor:pointer}
+.view{padding:24px 28px 48px;max-width:1240px}
+.vh{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.vh h1{font-size:20px;font-weight:600;margin:0 0 2px}
+.vh p{margin:0;color:var(--ink2);font-size:13.5px;max-width:70ch}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.card>h3{margin:0;padding:12px 16px;border-bottom:1px solid var(--line2);font-size:13.5px;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.card>h3 span{font-weight:400;color:var(--ink3);font-size:12.5px}
+.pad{padding:14px 16px}
+.grid{display:grid;gap:16px}.grid>*{min-width:0}td.mono{white-space:nowrap}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:2fr 1fr}
+.kpi{padding:14px 16px}.kpi small{color:var(--ink3);font-size:12px;display:block}.kpi b{font-size:24px;font-weight:600;display:block;margin:2px 0}.kpi span{font-size:12px;color:var(--ink2)}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;font-weight:500;color:var(--ink3);font-size:12px;padding:9px 14px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--panel)}
+td{padding:10px 14px;border-bottom:1px solid var(--line2);vertical-align:top}
+tr:last-child td{border-bottom:0}
+tbody tr.click{cursor:pointer}tbody tr.click:hover td{background:var(--bg)}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:500;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.pill:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.ok{color:var(--ok);background:var(--okBg)}.warn{color:var(--warn);background:var(--warnBg)}.bad{color:var(--bad);background:var(--badBg)}.neu{color:var(--ink2);background:var(--line2)}
+.tag{display:inline-block;font:500 11px "IBM Plex Mono",monospace;padding:1px 6px;border-radius:4px;border:1px solid var(--line);color:var(--ink2);margin:1px 3px 1px 0;white-space:nowrap}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin-bottom:16px;overflow-x:auto}
+.tabs button{border:0;background:none;padding:8px 12px;cursor:pointer;color:var(--ink2);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tabs button[aria-selected=true]{color:var(--ink);border-color:var(--acc);font-weight:500}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--panel)}
+.seg button{border:0;background:none;padding:5px 11px;cursor:pointer;font-size:12.5px;color:var(--ink2);border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}.seg button[aria-pressed=true]{background:var(--accBg);color:var(--acc);font-weight:500}
+.btn{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:6px 12px;cursor:pointer;font-size:13px}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+.bar{height:6px;border-radius:3px;background:var(--line2);overflow:hidden}.bar i{display:block;height:100%;background:var(--acc)}
+dl.meta{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:0;font-size:13px}dl.meta dt{color:var(--ink3)}dl.meta dd{margin:0}
+.doc h4{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);font-weight:500;margin:18px 0 6px}
+.doc p{margin:0;max-width:72ch}
+ol.stm{list-style:none;padding:0;margin:0}
+ol.stm li{display:grid;grid-template-columns:64px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--line2)}
+ol.stm li:last-child{border-bottom:0}
+.heat{display:grid;grid-template-columns:22px repeat(5,1fr);gap:3px;font-size:11px}
+.heat .c{aspect-ratio:1.5;border-radius:4px;display:flex;align-items:center;justify-content:center;gap:3px;flex-wrap:wrap;font:500 11px "IBM Plex Mono",monospace;color:#fff}
+.heat .ax{color:var(--ink3);display:flex;align-items:center;justify-content:center}
+.l1{background:#6aa77d}.l2{background:#d9a441}.l3{background:#d9733c}.l4{background:#b83a3a}
+.dot{background:rgba(0,0,0,.28);padding:1px 4px;border-radius:3px;cursor:pointer}
+.dot.on{background:#fff;color:#111}
+.tl{display:flex;flex-direction:column}
+.tl div{display:grid;grid-template-columns:18px 1fr auto;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;align-items:center}
+.tl i{width:10px;height:10px;border-radius:50%;border:2px solid var(--line)}
+.tl .done i{background:var(--ok);border-color:var(--ok)}.tl .now i{border-color:var(--acc);background:var(--accBg)}
+.empty{color:var(--ink3);font-size:13px;padding:24px;text-align:center}
+.note{font-size:12px;color:var(--ink3)}
+.mx td:not(:first-child){text-align:center}
+.mx .y{color:var(--acc);font-weight:600}
+@media (max-width:980px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g3,.g2{grid-template-columns:1fr}}
+@media (max-width:760px){
+ .app{grid-template-columns:1fr}
+ nav.side{position:fixed;inset:0 auto 0 0;width:250px;z-index:20;transform:translateX(-100%);transition:transform .2s;padding-top:max(18px,env(safe-area-inset-top))}
+ body.open nav.side{transform:none}
+ body.open:after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:15}
+ .menu{display:block}
+ header.top{padding:10px max(16px,env(safe-area-inset-right)) 10px max(16px,env(safe-area-inset-left));top:0}
+ .search{width:auto;flex:1;margin-left:0}
+ .crumb{display:none}
+ .view{padding:18px max(16px,env(safe-area-inset-right)) 40px max(16px,env(safe-area-inset-left))}
+ .g4{gap:10px}
+ ol.stm li{grid-template-columns:1fr;gap:2px}
 }
-@media (max-width:520px){.cls,.kv{grid-template-columns:minmax(0,1fr)}.stmt{grid-template-columns:minmax(0,1fr);gap:4px}}
-@media (prefers-reduced-motion:no-preference){.doc{animation:in .25s ease}@keyframes in{from{opacity:.6;transform:translateY(4px)}to{opacity:1;transform:none}}}
-
-.band{background:#0F1A2C;color:#EEF2F7;padding-bottom:0}
-.band .eyebrow.inv{color:#8FA3C0}
-.band .hero{padding-block:72px 48px}
-.band h1{font-size:clamp(46px,7vw,92px);line-height:.98;margin-top:16px;color:#fff}
-.band h1 em{font-style:italic;color:#9DBCF0}
-.band .lede{color:#B9C5D6}
-.btn.light{background:#fff;color:#0F1A2C;text-decoration:none}
-.btn.outline{background:transparent;color:#fff;border:1px solid #3A4A66;text-decoration:none}
-.stack{position:relative;height:340px}
-.sheet{position:absolute;width:250px;height:310px;background:#F6F6F2;border-radius:10px;padding:20px;color:#131C2E;box-shadow:0 24px 50px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:10px}
-.sheet span{font:500 11px var(--mono);color:#8590A2;letter-spacing:.06em}
-.sheet b{font:600 21px var(--display)}
-.sheet i{display:block;height:7px;border-radius:4px;background:#DFE1DA}
-.s1{right:30px;top:24px;transform:rotate(-2deg)}.s2{right:62px;top:14px;transform:rotate(-6deg);background:#D9DED8}.s3{right:94px;top:6px;transform:rotate(-10deg);background:#BCC4C6}.s4{right:126px;top:0;transform:rotate(-14deg);background:#9EA9B3}.s2 b,.s3 b,.s4 b,.s2 span,.s3 span,.s4 span{visibility:hidden}
-.sheet .seal{margin-top:auto;align-self:flex-end;font:600 11px var(--mono);letter-spacing:.12em;color:#A3261B;border:1.5px solid #A3261B;border-radius:6px;padding:5px 9px;transform:rotate(-6deg);font-style:normal}
-.band .cover{border-color:#24324A;margin-bottom:0}
-.band .cover div+div{border-color:#24324A}
-.band .cover span{color:#8FA3C0}
-.band .cover b{color:#fff}
-.block{padding-block:64px 8px}
-.block-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:8px 40px;align-items:end;margin-bottom:26px}
-.block-head .eyebrow{grid-column:1/-1}
-.block-head h2{font-size:clamp(28px,3.4vw,40px)}
-.block-head p{color:var(--ink2)}
-.life{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));counter-reset:l}
-.life li{border-top:3px solid var(--ink);padding:14px 14px 0 0;counter-increment:l}
-.life li::before{content:"0" counter(l);font:500 12px var(--mono);color:var(--ink3);display:block;margin-bottom:6px}
-.life b{display:block;font:600 18px var(--display)}
-.life span{font-size:13.5px;color:var(--ink2)}
-.fwgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.fwc{background:var(--sheet);border:1px solid var(--rule);border-radius:14px;padding:20px}
-.fwc h4{margin:0;font:600 17px var(--body)}
-.fwc .sub{font-size:13px;color:var(--ink3);margin-bottom:14px}
-.bar{display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:4px 10px;align-items:center;font-size:13.5px;margin-bottom:9px}
-.bar .track2{grid-column:1/-1;height:6px;background:var(--rule2);border-radius:3px;overflow:hidden}
-.bar .fill{height:100%;border-radius:3px}
-.bar em{font:500 12.5px var(--mono);color:var(--ink2);font-style:normal;text-align:right}
-.ws{padding-top:64px}
-@media (max-width:900px){.stack{display:none}.life{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:22px}.fwgrid,.block-head{grid-template-columns:minmax(0,1fr)}.band .hero{padding-block:44px 32px}}
-
-.posture{display:grid;grid-template-columns:220px minmax(0,1fr);gap:28px 40px;align-items:center;background:var(--sheet);border:1px solid var(--rule);border-radius:16px;padding:26px}
-.gauge{position:relative;width:200px;height:200px}
-.gauge svg{width:100%;height:100%}
-.gauge div{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
-.gauge b{font:600 40px var(--display);font-variant-numeric:tabular-nums}
-.gauge span{font-size:13px;color:var(--ink2)}
-.pbars{display:grid;gap:14px}
-.pb{display:grid;grid-template-columns:200px minmax(0,1fr) 54px;gap:14px;align-items:center;font-size:14.5px}
-.pb .st{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--rule2)}
-.pb em{font:500 13px var(--mono);font-style:normal;text-align:right}
-.plegend{grid-column:2;display:flex;gap:18px;font-size:13px;color:var(--ink2);flex-wrap:wrap}
-.plegend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-.stt{font:600 11.5px var(--mono);padding:2px 8px;border-radius:5px;white-space:nowrap}
-.st-impl{color:var(--ok);background:var(--okS)}.st-part{color:var(--warn);background:var(--warnS)}.st-gap{color:var(--crit);background:var(--critS)}
-@media (max-width:900px){.posture{grid-template-columns:minmax(0,1fr);justify-items:center}.pbars,.plegend{width:100%;grid-column:auto}.pb{grid-template-columns:minmax(0,1fr) 54px}.pb .st{grid-column:1/-1;grid-row:2}}
 </style>
 </head>
 <body>
-
-
-<header class="mast" style="display:none">
-  <div class="wrap">
-    <span class="crest">SP</span>
-    <span><b>Security Policies Pack</b> <span style="color:var(--ink3)">· GRC portfolio</span></span>
-    <div class="meta"><span>DOC SET SPP-2026</span><span>v2.0</span><span>Owner: Fatima Asiri</span></div>
-  </div>
-</header>
-
+<div class="app">
+<nav class="side" id="side">
+  <div class="org"><div class="lg">H</div><div><b>Halden Group</b><small>Information Security</small></div></div>
+  <h6>Program</h6>
+  <a href="#overview">Overview</a>
+  <a href="#policies">Policies <em>4</em></a>
+  <a href="#controls">Controls <em id="nC"></em></a>
+  <a href="#frameworks">Frameworks <em>3</em></a>
+  <h6>Operations</h6>
+  <a href="#risks">Risk register <em id="nR"></em></a>
+  <a href="#evidence">Evidence <em id="nE"></em></a>
+  <a href="#incidents">Incident drill</a>
+  <a href="#access">Access review <em id="nA"></em></a>
+  <a href="#classify">Data handling</a>
+  <div class="foot">Policy set SPP · v2.0<br>Next review: Jan 2027</div>
+</nav>
 <main>
-  <section class="band">
-    <div class="wrap hero">
-      <div>
-        <div class="eyebrow inv">Governance · Risk · Compliance</div>
-        <h1>Security<br>Policies <em>Pack</em></h1>
-        <p class="lede">Four enterprise policies that define how access is granted, how data is protected, how incidents are handled and how risk is governed. Each requirement is numbered, owned and traced to NCA ECC-2:2024, ISO/IEC 27001:2022 and NIST CSF 2.0.</p>
-        <div class="row" style="margin-top:28px"><a class="btn light" href="#pack">Open the policies</a><a class="btn outline" href="#matrix-sec">Control mapping</a></div>
-      </div>
-      <div class="stack" aria-hidden="true">
-        <div class="sheet s4"><span>POL-RM</span><b>Risk Management</b></div>
-        <div class="sheet s3"><span>POL-IR</span><b>Incident Response</b></div>
-        <div class="sheet s2"><span>POL-DC</span><b>Data Classification</b></div>
-        <div class="sheet s1"><span>POL-AC · v2.0</span><b>Access Control</b><i></i><i></i><i style="width:60%"></i><em class="seal">APPROVED</em></div>
-      </div>
-    </div>
-    <div class="wrap">
-      <div class="cover">
-        <div><b id="cStmts">0</b><span>Numbered policy statements</span></div>
-        <div><b id="cMaps">0</b><span>Control mappings</span></div>
-        <div><b>3</b><span>Frameworks: NCA · ISO · NIST</span></div>
-        <div><b id="cReady">–</b><span>Compliance readiness</span></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="wrap">
-    <section class="block">
-      <div class="block-head"><div class="eyebrow">Governance model</div><h2>Policy lifecycle</h2><p>Every document in the pack follows the same controlled lifecycle, with a named owner at each stage.</p></div>
-      <ol class="life">
-        <li><b>Draft</b><span>Policy owner</span></li>
-        <li><b>Review</b><span>Legal · IT · HR</span></li>
-        <li><b>Approve</b><span>CISO / Committee</span></li>
-        <li><b>Publish</b><span>Intranet + awareness</span></li>
-        <li><b>Monitor</b><span>KPIs · internal audit</span></li>
-        <li><b>Revise</b><span>Annually or on change</span></li>
-      </ol>
-    </section>
-
-
-    <section class="block" id="posture">
-      <div class="block-head"><div class="eyebrow">Assurance</div><h2>Compliance posture</h2><p>Implementation status of every policy statement, with the evidence an auditor would request. Status reflects a sample assessment of a mid-size organization.</p></div>
-      <div class="posture">
-        <div class="gauge"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" fill="none" stroke="var(--rule)" stroke-width="12"/><circle id="gArc" cx="60" cy="60" r="50" fill="none" stroke="var(--ok)" stroke-width="12" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="0 400"/></svg><div><b id="gPct">0%</b><span>Overall readiness</span></div></div>
-        <div class="pbars" id="pbars"></div>
-        <div class="plegend"><span><i style="background:var(--ok)"></i>Implemented</span><span><i style="background:var(--warn)"></i>Partial</span><span><i style="background:var(--crit)"></i>Gap</span></div>
-      </div>
-      <div class="seg" id="efilter" style="margin:22px 0 12px"></div>
-      <div class="tablebox"><table class="matrix" id="evid"></table></div>
-    </section>
-    <section class="block">
-      <div class="block-head"><div class="eyebrow">Coverage</div><h2>Framework alignment</h2><p>Where the pack lands in each framework.</p></div>
-      <div class="fwgrid" id="fwgrid"></div>
-    </section>
-
-<section class="ws" id="pack">
-      <nav class="index" role="tablist" aria-label="Policies" id="index">
-        <div class="eyebrow">Policy register</div>
-      </nav>
-      <article class="doc" id="doc" aria-live="polite"></article>
-    </section>
-  </div>
-
-  <section class="matrix-sec" id="matrix-sec">
-    <div class="wrap">
-      <div class="eyebrow">Traceability</div>
-      <h2 style="font-size:clamp(28px,3.4vw,40px);margin:8px 0 10px">Control mapping matrix</h2>
-      <p style="color:var(--ink2);max-width:66ch;margin-bottom:24px">Every statement in the pack, and the external controls it satisfies. This is the view an auditor asks for first. Filter by framework to see coverage.</p>
-      <div class="seg" id="mfilter" style="margin-bottom:16px"></div>
-      <div class="tablebox"><table class="matrix" id="matrix"></table></div>
-    </div>
-  </section>
-
-  <footer class="wrap foot">
-    <div>
-      <b>About this project.</b> Built as a practical GRC portfolio piece: four core policies written in the structure used by large organizations (purpose, scope, numbered statements, roles, exceptions, enforcement, review), then traced to recognized control frameworks so each requirement can be audited. The interactive tools show how each policy is operated day to day.
-    </div>
-    <div>
-      <b>Fatima Asiri</b><br>BSc Information Technology, Information Security track · ServiceNow CSA · CompTIA Security+<br>
-      <span style="color:var(--ink3);font-size:13px">Framework references are to public control catalogs: NCA ECC-2:2024 (Saudi National Cybersecurity Authority), ISO/IEC 27001:2022 Annex A, NIST Cybersecurity Framework 2.0. Mappings are the author's interpretation.</span>
-    </div>
-  </footer>
+  <header class="top">
+    <button class="menu" onclick="document.body.classList.toggle('open')" aria-label="Menu">☰</button>
+    <div class="crumb">Halden Group / <b id="crumb">Overview</b></div>
+    <label class="search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" placeholder="Search controls, e.g. MFA or 2-2-3"></label>
+  </header>
+  <section class="view" id="view"></section>
 </main>
-
+</div>
 <script>
 const P=[
 {code:"POL-AC",id:"ac",title:"Access Control Policy",short:"Least privilege, MFA, quarterly reviews",
@@ -404,171 +205,147 @@ const P=[
  exceptions:"Risks may be accepted above appetite only by the Risk Committee, with a review date no longer than 6 months.",
  tool:"risk"}
 ];
-const FW={nca:["NCA ECC-2","nca"],iso:["ISO 27001","iso"],nist:["NIST CSF 2.0","nist"]};
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]);
-const chips=m=>Object.entries(m).flatMap(([k,v])=>v.map(c=>`<span class="fw ${FW[k][1]}" title="${FW[k][0]}">${k.toUpperCase()} ${esc(c)}</span>`)).join("");
-let cur=0;
-try{const h=location.hash.slice(1);const i=P.findIndex(p=>p.id===h);if(i>=0)cur=i}catch{}
-document.getElementById("cStmts").textContent=P.reduce((a,p)=>a+p.stmts.length,0);
-document.getElementById("cMaps").textContent=P.reduce((a,p)=>a+p.stmts.reduce((b,s)=>b+Object.values(s[2]).flat().length,0),0);
-
-function renderIndex(){
-  const ix=document.getElementById("index");
-  ix.innerHTML=`<div class="eyebrow">Policy register</div>`+P.map((p,i)=>`<button class="pol" role="tab" aria-selected="${i===cur}" onclick="show(${i})"><span class="code">${p.code.slice(4)}</span><b>${p.title}</b><small>${p.short}</small></button>`).join("")+
-  `<div class="legend"><div><span class="fw nca">NCA</span> Saudi NCA ECC-2:2024</div><div><span class="fw iso">ISO</span> ISO/IEC 27001:2022</div><div><span class="fw nist">NIST</span> NIST CSF 2.0</div></div>`;
-}
-function show(i){cur=i;renderIndex();renderDoc();try{history.replaceState(null,"","#"+P[i].id)}catch{}
-  if(innerWidth<900)document.getElementById("doc").scrollIntoView({behavior:"smooth",block:"start"})}
-
-function renderDoc(){
-  const p=P[cur];
-  document.getElementById("doc").innerHTML=`
-  <div class="doc-head">
-    <div class="top"><span class="eyebrow">${p.code} · Policy ${cur+1} of 4</span><span class="stamp">APPROVED</span></div>
-    <h2>${p.title}</h2>
-    <p class="purpose">${p.purpose}</p>
-    <div class="ctrl"><div><span>Owner</span>${p.owner}</div><div><span>Approver</span>${p.approver}</div><div><span>Review</span>${p.review}</div><div><span>Effective</span>${p.effective}</div></div>
-  </div>
-  <div class="sec"><h3><span class="n">1</span>Scope</h3><p>${p.scope}</p></div>
-  <div class="sec"><h3><span class="n">2</span>Policy statements</h3>
-    ${p.stmts.map(s=>`<div class="stmt"><span class="id">${s[0]}</span><div><p>${esc(s[1])}</p><div class="maps">${chips(s[2])}</div></div></div>`).join("")}
-  </div>
-  <div class="sec"><h3><span class="n">3</span>Operate it</h3>${TOOLS[p.tool]()}</div>
-  <div class="sec"><h3><span class="n">4</span>Roles &amp; responsibilities</h3>
-    <div class="tablebox"><table class="raci"><thead><tr><th>Activity</th>${p.raciCols.map(c=>`<th style="text-align:center">${c}</th>`).join("")}</tr></thead>
-    <tbody>${p.raci.map(r=>`<tr><td>${r[0]}</td>${r.slice(1).map(x=>`<td class="r r-${x}">${x}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
-    <p style="font-size:12.5px;color:var(--ink3);margin-top:8px" class="mono">R Responsible · A Accountable · C Consulted · I Informed</p>
-  </div>
-  <div class="sec"><h3><span class="n">5</span>Scenario</h3><div class="scenario"><b>In practice</b>${p.scenario}</div></div>
-  <div class="sec"><h3><span class="n">6</span>Measures of effectiveness</h3><div class="kv">${p.kpis.map(k=>`<div><span>${k[0]}</span><b>${k[1]}</b></div>`).join("")}</div></div>
-  <div class="sec"><h3><span class="n">7</span>Tooling</h3><ul style="margin:0;padding-left:20px">${p.tools.map(t=>`<li>${t}</li>`).join("")}</ul></div>
-  <div class="sec"><h3><span class="n">8</span>Exceptions &amp; enforcement</h3><p>${p.exceptions}</p><p style="margin-top:10px;color:var(--ink2)">Violations may lead to revoked access and disciplinary action in line with HR policy. Compliance is verified through internal audit.</p></div>`;
-  INIT[p.tool]?.();
-}
-
-const TOOLS={
-risk:()=>`<div class="tool"><div class="eyebrow">Live tool · RM-01 / RM-03</div><h4>Risk heat map &amp; register</h4><p class="hint">Click a risk to see its score and treatment, or change likelihood and impact to see it move across the matrix.</p>
-  <div class="heat" id="heat"></div>
-  <div class="tablebox"><table class="risklist" id="rlist"></table></div></div>`,
-ir:()=>`<div class="tool"><div class="eyebrow">Live tool · IR-01 → IR-07</div><h4>Incident response clock</h4><p class="hint">Run the phishing scenario. Each phase is checked against the policy deadlines, and the timeline logs what happened like a real incident ticket.</p>
-  <div class="seg" id="irsev"></div>
-  <div class="track" id="track"></div>
-  <div class="row" style="margin-bottom:12px"><button class="btn" id="irnext">Start incident</button><button class="btn ghost" id="irslow">Simulate a late report</button><button class="btn ghost" id="irreset">Reset</button></div>
-  <div class="log" id="irlog" aria-live="polite"><span class="t">Ready. Choose a severity and start.</span></div></div>`,
-classify:()=>`<div class="tool"><div class="eyebrow">Live tool · DC-01 → DC-05</div><h4>What label does this need?</h4><p class="hint">Pick a type of information. The pack tells you the label and exactly how it must be handled.</p>
-  <div class="seg" id="clsItems"></div>
-  <div class="cls" style="margin-top:16px"><div id="clsOut"></div><div id="clsRules"></div></div></div>`,
-access:()=>`<div class="tool"><div class="eyebrow">Live tool · AC-01 / AC-05 / AC-06</div><h4>Quarterly access review</h4><p class="hint">A sample of accounts from this quarter's review. The pack flags what breaks the policy; decide each one and see the review close.</p>
-  <div class="tablebox"><table class="ar" id="ar"></table></div>
-  <p id="arStat" class="mono" style="font-size:13px;margin-top:12px;color:var(--ink2)"></p></div>`
-};
-const INIT={};
-
 const RISKS=[["R1","Payments server single point of failure",3,5,"Standby server, cloud redundancy, quarterly failover test","Infra"],
 ["R2","Phishing leads to credential theft",4,4,"MFA everywhere (AC-03), awareness training, mail filtering","Security"],
 ["R3","Third-party vendor with excessive access",3,3,"Time-bound access, quarterly vendor review (AC-05)","Procurement"],
 ["R4","Unlabelled confidential files on shared drives",4,2,"Auto-labelling, DLP rules (DC-04)","Data"],
 ["R5","Ransomware on backup infrastructure",2,5,"Immutable offline backups, EDR, restore drills","Infra"]];
-const level=s=>s>=15?["crit","Critical"]:s>=10?["high","High"]:s>=5?["med","Medium"]:["low","Low"];
-let selR=0;
-INIT.risk=()=>{
-  const heat=document.getElementById("heat");let h=`<div></div>`;
-  h=""; for(let l=5;l>=1;l--){h+=`<div class="ax">${l}</div>`;for(let i=1;i<=5;i++){const lv=level(l*i)[0];h+=`<div class="cell lv-${lv}" title="Likelihood ${l} × Impact ${i} = ${l*i}">${RISKS.map((r,k)=>r[2]===l&&r[3]===i?`<button class="dot" aria-pressed="${k===selR}" onclick="selR=${k};INIT.risk()" aria-label="${r[0]}">${r[0].slice(1)}</button>`:"").join("")}</div>`}}
-  h+=`<div></div>`+[1,2,3,4,5].map(i=>`<div class="ax">${i}</div>`).join("");
-  heat.innerHTML=h+`<div></div><div class="ax" style="grid-column:span 5;justify-items:center">Impact →</div>`;
-  heat.insertAdjacentHTML("afterbegin","");
-  document.getElementById("rlist").innerHTML=`<thead><tr><th>ID</th><th>Risk</th><th>L</th><th>I</th><th>Rating</th><th>Treatment</th></tr></thead><tbody>`+
-   RISKS.map((r,k)=>{const [c,n]=level(r[2]*r[3]);return`<tr class="${k===selR?"sel":""}" onclick="selR=${k};INIT.risk()" style="cursor:pointer"><td class="mono">${r[0]}</td><td>${r[1]}<div style="font-size:12px;color:var(--ink3)">Owner: ${r[5]}</div></td>
-   <td>${k===selR?`<button class="btn ghost" style="padding:2px 8px" onclick="event.stopPropagation();adj(${k},2,1)">${r[2]}</button>`:r[2]}</td>
-   <td>${k===selR?`<button class="btn ghost" style="padding:2px 8px" onclick="event.stopPropagation();adj(${k},3,1)">${r[3]}</button>`:r[3]}</td>
-   <td><span class="tag t-${c}">${n} · ${r[2]*r[3]}</span></td><td style="font-size:13.5px">${r[4]}${c==="high"||c==="crit"?`<div class="mono" style="font-size:12px;color:var(--hi)">Plan due ≤ 30 days (RM-03)</div>`:""}</td></tr>`}).join("")+`</tbody>`;
-};
-function adj(k,f){RISKS[k][f]=RISKS[k][f]%5+1;INIT.risk()}
-
-const PH=[["Identify","Reported to SOC",60],["Contain","Workstation isolated",240],["Eradicate","Malware removed",480],["Recover","User restored",1440],["Lessons","Review closed",10080]];
-const SEV={P1:"P1 Critical",P2:"P2 High",P3:"P3 Medium"};
-let ir={step:-1,t:0,sev:"P2",late:false};
-INIT.ir=()=>{
-  document.getElementById("irsev").innerHTML=Object.entries(SEV).map(([k,v])=>`<button aria-pressed="${ir.sev===k}" onclick="ir.sev='${k}';INIT.ir()">${v}</button>`).join("");
-  document.getElementById("track").innerHTML=PH.map((p,i)=>`<div class="${i<ir.step?"done":i===ir.step?"on":""}"><b>${i+1} · ${p[0]}</b>${p[1]}</div>`).join("");
-  const n=document.getElementById("irnext");n.textContent=ir.step<0?"Start incident":ir.step>=PH.length-1?"Incident closed":"Next phase →";n.disabled=ir.step>=PH.length-1;
-  n.onclick=()=>irStep(false);document.getElementById("irslow").onclick=()=>irStep(true);
-  document.getElementById("irreset").onclick=()=>{ir={step:-1,t:0,sev:ir.sev,late:false};INIT.ir();document.getElementById("irlog").innerHTML='<span class="t">Ready. Choose a severity and start.</span>'};
-};
-const fmtT=m=>m<60?`T+${m}m`:m<1440?`T+${Math.round(m/60)}h`:`T+${Math.round(m/1440)}d`;
-function irStep(slow){
-  if(ir.step>=PH.length-1)return;
-  const log=document.getElementById("irlog");if(ir.step<0)log.innerHTML="";
-  ir.step++;const [name,,limit]=PH[ir.step];
-  const factor=ir.sev==="P1"?.5:ir.sev==="P3"?1.5:1;const lim=Math.round(limit*factor);
-  const took=slow?Math.round(lim*1.6):Math.round(lim*(.35+Math.random()*.4));ir.t+=took;
-  const okk=took<=lim;
-  const rule={0:"IR-01 report within 1h",1:"IR-03 isolate immediately",2:"IR-04 evidence preserved",3:"IR-05 logged",4:"IR-07 review within 7 days"}[ir.step];
-  const extra=ir.step===1&&ir.sev==="P1"?' · executives notified':ir.step===3&&ir.sev==="P1"?' · NCA notification assessed (IR-06)':'';
-  log.innerHTML+=`<div><span class="t">${fmtT(ir.t)}</span> ${name}: ${PH[ir.step][1]}${extra} · <span class="${okk?"ok":"bad"}">${okk?"within":"BREACH of"} ${rule}</span></div>`;
-  if(!okk)log.innerHTML+=`<div class="bad">  ↳ Deviation recorded for the post-incident review.</div>`;
-  if(ir.step===PH.length-1)log.innerHTML+=`<div class="ok">Incident ${ir.sev}-2026-014 closed. Root cause: phishing. Action: awareness module updated.</div>`;
-  log.scrollTop=log.scrollHeight;INIT.ir();
-}
-
 const CL=[["Press release","PUBLIC"],["Office floor plan","INTERNAL"],["Org chart","INTERNAL"],["Quarterly financial report","CONFIDENTIAL"],["Customer contact list","CONFIDENTIAL"],["Employee salaries","HIGHLY"],["National ID numbers","HIGHLY"],["Source code","CONFIDENTIAL"]];
 const LB={PUBLIC:["Public","Anyone may see it.",["No restrictions on sharing","Approve before first publication","Keep accurate and current"]],
 INTERNAL:["Internal","Staff only.",["Share inside the company only","Company devices and accounts","No encryption required at rest"]],
 CONFIDENTIAL:["Confidential","Named teams only.",["Encrypt at rest and in transit (DC-02)","External sharing needs owner approval (DC-03)","DLP monitored (DC-04)","Shred paper copies (DC-05)"]],
 HIGHLY:["Highly Confidential","Named individuals only.",["Strong encryption, access logged","Never sent externally without CISO sign-off","Stored only in approved systems, no USB","Any exposure reported at once (DC-06)"]]};
-let cSel=3;
-INIT.classify=()=>{
-  document.getElementById("clsItems").innerHTML=CL.map((c,i)=>`<button aria-pressed="${i===cSel}" onclick="cSel=${i};INIT.classify()">${c[0]}</button>`).join("");
-  const k=CL[cSel][1],l=LB[k];
-  document.getElementById("clsOut").innerHTML=`<div class="lbl L-${k}"><div class="eyebrow">Required label</div><div class="big">${l[0]}</div><p style="margin-top:4px">${l[1]}</p></div>`;
-  document.getElementById("clsRules").innerHTML=`<div class="eyebrow" style="margin-bottom:6px">Handling rules</div><ul style="margin:0;padding-left:18px;font-size:14.5px">${l[2].map(r=>`<li>${r}</li>`).join("")}</ul>`;
-};
-
 const AR=[["s.alharbi","Finance Analyst","Finance ERP (read/write)","Matches role",""],
 ["intern.03","Intern","Domain Admin","Excessive",'AC-01 least privilege'],
 ["m.qahtani","Left company 12 days ago","VPN, Email","Should be disabled",'AC-06 revoke ≤ 24h'],
 ["svc_backup","Service account","Backup servers","Shared password",'AC-02 unique IDs'],
 ["n.zahrani","IT Engineer","Admin console (no MFA)","MFA missing",'AC-03 MFA required']];
-let arDec={};
-INIT.access=()=>{
-  document.getElementById("ar").innerHTML=`<thead><tr><th>Account</th><th>Role</th><th>Access</th><th>Finding</th><th>Decision</th></tr></thead><tbody>`+AR.map((a,i)=>`<tr><td class="mono">${a[0]}</td><td>${a[1]}</td><td>${a[2]}</td><td>${a[4]?`<span class="flag">⚑ ${a[4]}</span>`:'<span style="color:var(--ok)" class="mono">OK</span>'}</td>
-  <td><div class="seg">${["Keep","Revoke","Fix"].map(d=>`<button aria-pressed="${arDec[i]===d}" onclick="arDec[${i}]='${d}';INIT.access()" style="padding:4px 9px;font-size:13px">${d}</button>`).join("")}</div></td></tr>`).join("")+`</tbody>`;
-  const done=Object.keys(arDec).length,right=AR.filter((a,i)=>arDec[i]&&((a[4]==="")===(arDec[i]==="Keep"))).length;
-  document.getElementById("arStat").innerHTML=done<AR.length?`${done}/${AR.length} decided · review open`:right===AR.length?`<span style="color:var(--ok)">Review closed · all ${AR.length} accounts compliant with POL-AC · signed off by manager</span>`:`<span style="color:var(--crit)">${AR.length-right} decision(s) leave a policy breach open. Recheck the flagged accounts.</span>`;
-};
-
-let mf="all";
-function renderMatrix(){
-  document.getElementById("mfilter").innerHTML=[["all","All frameworks"],["nca","NCA ECC-2:2024"],["iso","ISO 27001:2022"],["nist","NIST CSF 2.0"]].map(([k,v])=>`<button aria-pressed="${mf===k}" onclick="mf='${k}';renderMatrix()">${v}</button>`).join("");
-  const cols=mf==="all"?["nca","iso","nist"]:[mf];
-  document.getElementById("matrix").innerHTML=`<thead><tr><th>ID</th><th>Statement</th>${cols.map(c=>`<th>${FW[c][0]}</th>`).join("")}</tr></thead><tbody>`+
-  P.flatMap(p=>p.stmts.map(s=>`<tr><td>${s[0]}</td><td>${esc(s[1])}</td>${cols.map(c=>`<td><div class="maps">${(s[2][c]||[]).map(x=>`<span class="fw ${FW[c][1]}">${esc(x)}</span>`).join("")}</div></td>`).join("")}</tr>`)).join("")+`</tbody>`;
-}
-
 const DOM={nca:[["1-5","Cybersecurity risk management"],["2-2","Identity & access management"],["2-6","Mobile device security"],["2-7","Data & information protection"],["2-8","Cryptography"],["2-13","Incident & threat management"],["4-1","Third-party cybersecurity"]],
 iso:[["5","Organizational controls"],["6","People controls"],["7","Physical controls"],["8","Technological controls"],["Cl.","ISMS clauses 6, 8, 9"]],
 nist:[["GV","Govern"],["ID","Identify"],["PR","Protect"],["DE","Detect"],["RS","Respond"]]};
-function renderFw(){const all=P.flatMap(p=>p.stmts);const col={nca:"var(--ok)",iso:"var(--accent)",nist:"var(--warn)"};const name={nca:["NCA ECC-2:2024","Saudi National Cybersecurity Authority"],iso:["ISO/IEC 27001:2022","Annex A themes and clauses"],nist:["NIST CSF 2.0","Core functions"]};
- document.getElementById("fwgrid").innerHTML=Object.keys(DOM).map(k=>{const rows=DOM[k].map(([pre,label])=>{const n=all.filter(s=>(s[2][k]||[]).some(c=>k==="iso"?(pre==="Cl."?c.startsWith("Cl."):c.split(".")[0]===pre&&!c.startsWith("Cl.")):c.startsWith(pre+(k==="nist"?".":"-")))).length;return[pre,label,n]}).filter(r=>r[2]);const max=Math.max(...rows.map(r=>r[2]));
- return`<div class="fwc"><h4>${name[k][0]}</h4><div class="sub">${name[k][1]}</div>${rows.map(([pre,label,n])=>`<div class="bar"><span><span class="mono" style="color:var(--ink3)">${pre}</span> ${label}</span><em>${n}</em><div class="track2"><div class="fill" style="width:${n/max*100}%;background:${col[k]}"></div></div></div>`).join("")}</div>`}).join("")}
-renderIndex();renderDoc();renderMatrix();renderFw();
 const EV={"AC-01":["impl","Role-based access matrix, signed by system owners"],"AC-02":["impl","Directory export: 0 shared accounts"],"AC-03":["part","MFA on VPN and email; 2 legacy admin consoles pending"],"AC-04":["impl","PAM approval tickets, 8-hour expiry"],"AC-05":["impl","Q3 access review report, 100% completed"],"AC-06":["part","Leaver report: 94% revoked within 24h"],"AC-07":["impl","MDM remote-wipe log"],
 "DC-01":["part","Labelling at 81% of SharePoint libraries"],"DC-02":["impl","Encryption configuration baseline"],"DC-03":["impl","Approved external-sharing channels list"],"DC-04":["part","DLP in monitor mode on endpoints"],"DC-05":["impl","Certified disposal records"],"DC-06":["impl","Incident tickets tagged data-exposure"],
 "IR-01":["impl","SOC intake SLA report"],"IR-02":["impl","Severity matrix v1.3"],"IR-03":["impl","EDR isolation playbook"],"IR-04":["part","Chain-of-custody form drafted, not trained"],"IR-05":["impl","Central incident log"],"IR-06":["gap","NCA reporting procedure not yet documented"],"IR-07":["impl","Post-incident reviews, last 4 closed ≤ 7 days"],
 "RM-01":["impl","Risk methodology v2.0"],"RM-02":["impl","Risk committee minutes, Q1–Q3"],"RM-03":["part","2 of 3 high risks have approved plans"],"RM-04":["impl","Signed risk acceptances"],"RM-05":["gap","Supplier risk assessment not yet in procurement"],"RM-06":["impl","Monthly KRI dashboard"]};
-const STN={impl:["Implemented","st-impl",1],part:["Partial","st-part",.5],gap:["Gap","st-gap",0]};
-let ef="all";
-function renderPosture(){
- const all=P.flatMap(p=>p.stmts.map(s=>[p,s]));const score=all.reduce((a,[,s])=>a+STN[EV[s[0]][0]][2],0)/all.length;
- const pct=Math.round(score*100);document.getElementById('cReady').textContent=pct+'%';document.getElementById("gPct").textContent=pct+"%";document.getElementById("gArc").setAttribute("stroke-dasharray",(314.16*score).toFixed(1)+" 400");
- document.getElementById("pbars").innerHTML=P.map(p=>{const c={impl:0,part:0,gap:0};p.stmts.forEach(s=>c[EV[s[0]][0]]++);const n=p.stmts.length;const sc=Math.round((c.impl+c.part*.5)/n*100);
-  return`<div class="pb"><span>${p.title.replace(" Policy","")}</span><div class="st"><span style="width:${c.impl/n*100}%;background:var(--ok)"></span><span style="width:${c.part/n*100}%;background:var(--warn)"></span><span style="width:${c.gap/n*100}%;background:var(--crit)"></span></div><em>${sc}%</em></div>`}).join("");
- document.getElementById("efilter").innerHTML=[["all","All"],["impl","Implemented"],["part","Partial"],["gap","Gaps"]].map(([k,v])=>`<button aria-pressed="${ef===k}" onclick="ef='${k}';renderPosture()">${v}${k==="all"?"":" · "+all.filter(([,s])=>EV[s[0]][0]===k).length}</button>`).join("");
- document.getElementById("evid").innerHTML=`<thead><tr><th>ID</th><th>Requirement</th><th>Status</th><th>Evidence</th></tr></thead><tbody>`+all.filter(([,s])=>ef==="all"||EV[s[0]][0]===ef).map(([p,s])=>{const [st,e]=EV[s[0]];return`<tr><td>${s[0]}</td><td>${esc(s[1])}</td><td><span class="stt ${STN[st][1]}">${STN[st][0]}</span></td><td style="color:var(--ink2)">${esc(e)}</td></tr>`}).join("")+`</tbody>`;
-}
-renderPosture();
-addEventListener("hashchange",()=>{const i=P.findIndex(p=>p.id===location.hash.slice(1));if(i>=0&&i!==cur){cur=i;renderIndex();renderDoc()}});
-</script>
 
+</script>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]);
+const FWN={nca:"NCA ECC-2:2024",iso:"ISO/IEC 27001:2022",nist:"NIST CSF 2.0"};
+const ST={impl:["Implemented","ok"],part:["Partial","warn"],gap:["Gap","bad"]};
+const ALL=P.flatMap(p=>p.stmts.map(s=>({id:s[0],text:s[1],map:s[2],pol:p})));
+const tags=m=>Object.entries(m).flatMap(([k,v])=>v.map(c=>`<span class="tag" title="${FWN[k]}">${k.toUpperCase()} ${esc(c)}</span>`)).join("");
+const pill=k=>`<span class="pill ${ST[k][1]}">${ST[k][0]}</span>`;
+const score=()=>{const v=Object.values(EV).map(e=>e[0]);return Math.round(v.reduce((a,k)=>a+(k==="impl"?1:k==="part"?.5:0),0)/v.length*100)};
+const cnt=k=>Object.values(EV).filter(e=>e[0]===k).length;
+const lvl=s=>s>=15?["Critical","bad","l4"]:s>=10?["High","bad","l3"]:s>=5?["Medium","warn","l2"]:["Low","ok","l1"];
+const nMaps=ALL.reduce((a,s)=>a+Object.values(s.map).flat().length,0);
+$("#nC").textContent=ALL.length;$("#nR").textContent=RISKS.length;$("#nE").textContent=Object.keys(EV).length;$("#nA").textContent=AR.length;
+
+const V={};
+V.overview=()=>{
+ const byPol=P.map(p=>{const s=p.stmts.map(x=>EV[x[0]][0]);const v=Math.round(s.reduce((a,k)=>a+(k==="impl"?1:k==="part"?.5:0),0)/s.length*100);return[p,v,s.filter(k=>k!=="impl").length]});
+ const open=Object.entries(EV).filter(([,e])=>e[0]!=="impl");
+ return `<div class="vh"><div><h1>Security program overview</h1><p>Status of the four core policies, their controls and the evidence held against each one. Assessment period Q3 2026.</p></div></div>
+ <div class="grid g4">
+  <div class="card kpi"><small>Control readiness</small><b>${score()}%</b><div class="bar"><i style="width:${score()}%"></i></div></div>
+  <div class="card kpi"><small>Policy statements</small><b>${ALL.length}</b><span>${cnt("impl")} implemented · ${cnt("part")} partial · ${cnt("gap")} gaps</span></div>
+  <div class="card kpi"><small>Framework mappings</small><b>${nMaps}</b><span>NCA ECC · ISO 27001 · NIST CSF</span></div>
+  <div class="card kpi"><small>Open high risks</small><b>${RISKS.filter(r=>r[2]*r[3]>=10).length}</b><span>of ${RISKS.length} in register</span></div>
+ </div>
+ <div class="grid g3" style="margin-top:16px">
+  <div class="card"><h3>Readiness by policy <span>weighted: partial = 0.5</span></h3><div class="tw"><table><thead><tr><th>Policy</th><th>Owner</th><th style="width:34%">Readiness</th><th>Open</th></tr></thead><tbody>
+  ${byPol.map(([p,v,o])=>`<tr class="click" onclick="go('policies/${p.id}')"><td><b style="font-weight:500">${p.title}</b><div class="note mono">${p.code}</div></td><td>${p.owner}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="bar" style="flex:1"><i style="width:${v}%"></i></div><span class="mono">${v}%</span></div></td><td>${o?`<span class="pill warn">${o}</span>`:`<span class="pill ok">0</span>`}</td></tr>`).join("")}
+  </tbody></table></div></div>
+  <div class="card"><h3>Needs attention <span>${open.length}</span></h3><div class="tw"><table><tbody>
+  ${open.map(([id,e])=>`<tr class="click" onclick="go('evidence')"><td class="mono" style="width:64px">${id}</td><td>${esc(e[1])}<div style="margin-top:4px">${pill(e[0])}</div></td></tr>`).join("")}
+  </tbody></table></div></div>
+ </div>`};
+
+V.policies=(id)=>{
+ const p=P.find(x=>x.id===id);
+ if(!p) return `<div class="vh"><div><h1>Policies</h1><p>Controlled documents. Each follows the same structure: purpose, scope, numbered statements, roles, exceptions and review.</p></div></div>
+ <div class="card tw"><table><thead><tr><th>ID</th><th>Title</th><th>Owner</th><th>Approver</th><th>Statements</th><th>Effective</th><th>Review</th><th>Status</th></tr></thead><tbody>
+ ${P.map(p=>`<tr class="click" onclick="go('policies/${p.id}')"><td class="mono">${p.code}</td><td><b style="font-weight:500">${p.title}</b><div class="note">${p.short}</div></td><td>${p.owner}</td><td>${p.approver}</td><td>${p.stmts.length}</td><td>${p.effective}</td><td>${p.review}</td><td><span class="pill ok">Approved</span></td></tr>`).join("")}
+ </tbody></table></div>`;
+ return `<div class="vh"><div><div class="note mono"><a href="#policies">Policies</a> / ${p.code}</div><h1>${p.title}</h1><p>${p.short}</p></div><span class="pill ok">Approved · v2.0</span></div>
+ <div class="grid g3"><div class="card pad doc">
+  <h4 style="margin-top:0">1. Purpose</h4><p>${p.purpose}</p>
+  <h4>2. Scope</h4><p>${p.scope}</p>
+  <h4>3. Policy statements</h4><ol class="stm">${p.stmts.map(s=>`<li><span class="mono" style="color:var(--ink3)">${s[0]}</span><div>${esc(s[1])}<div style="margin-top:5px">${tags(s[2])} ${pill(EV[s[0]][0])}</div></div></li>`).join("")}</ol>
+  <h4>4. Roles (RACI)</h4><div class="tw"><table><thead><tr><th>Activity</th>${p.raciCols.map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>${p.raci.map(r=>`<tr><td>${r[0]}</td>${r.slice(1).map(x=>`<td class="mono" style="${x==="A"?"color:var(--acc);font-weight:600":""}">${x}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
+  <h4>5. Exceptions</h4><p>${p.exceptions}</p>
+  <h4>6. Example</h4><p>${p.scenario}</p>
+ </div>
+ <div class="grid" style="align-content:start">
+  <div class="card pad"><dl class="meta"><dt>Document</dt><dd class="mono">${p.code}</dd><dt>Owner</dt><dd>${p.owner}</dd><dt>Approver</dt><dd>${p.approver}</dd><dt>Effective</dt><dd>${p.effective}</dd><dt>Review</dt><dd>${p.review}</dd></dl></div>
+  <div class="card"><h3>Key indicators</h3><table><tbody>${p.kpis.map(k=>`<tr><td>${k[0]}</td><td class="mono" style="text-align:right">${esc(k[1])}</td></tr>`).join("")}</tbody></table></div>
+  <div class="card"><h3>Supporting tooling</h3><div class="pad" style="padding-top:8px">${p.tools.map(t=>`<div style="padding:4px 0">${t}</div>`).join("")}</div></div>
+ </div></div>`};
+
+let cf="all";
+V.controls=()=>`<div class="vh"><div><h1>Control library</h1><p>Every policy statement treated as a control and traced to the external requirements it satisfies.</p></div>
+ <div class="seg">${[["all","All"],...P.map(p=>[p.id,p.code.slice(4)])].map(([k,l])=>`<button aria-pressed="${cf===k}" onclick="cf='${k}';render()">${l}</button>`).join("")}</div></div>
+ <div class="card tw"><table><thead><tr><th>Control</th><th>Requirement</th><th>NCA ECC-2</th><th>ISO 27001</th><th>NIST CSF</th><th>Status</th></tr></thead><tbody id="ctb"></tbody></table></div>`;
+function ctRows(){const q=($("#q").value||"").toLowerCase();const rows=ALL.filter(s=>(cf==="all"||s.pol.id===cf)&&(!q||(s.id+" "+s.text+" "+JSON.stringify(s.map)).toLowerCase().includes(q)));
+ const t=$("#ctb");if(!t)return;t.innerHTML=rows.length?rows.map(s=>`<tr><td class="mono">${s.id}</td><td style="min-width:260px">${esc(s.text)}</td>${["nca","iso","nist"].map(k=>`<td>${(s.map[k]||[]).map(c=>`<span class="tag">${esc(c)}</span>`).join("")}</td>`).join("")}<td>${pill(EV[s.id][0])}</td></tr>`).join(""):`<tr><td colspan="6" class="empty">No controls match “${esc(q)}”.</td></tr>`}
+
+V.frameworks=()=>{const sec=k=>DOM[k].map(([pre,label])=>{const hit=ALL.filter(s=>(s.map[k]||[]).some(c=>k==="iso"?(pre==="Cl."?c.startsWith("Cl."):c.split(".")[0]===pre&&!c.startsWith("Cl.")):c.startsWith(pre+(k==="nist"?".":"-"))));return[pre,label,hit]}).filter(r=>r[2].length);
+ return `<div class="vh"><div><h1>Frameworks</h1><p>Coverage of each external framework by the policy set. Mapping is many-to-many: one statement can satisfy several requirements.</p></div></div>
+ <div class="grid">${["nca","iso","nist"].map(k=>{const r=sec(k);const m=Math.max(...r.map(x=>x[2].length));return `<div class="card"><h3>${FWN[k]} <span>${r.length} areas covered</span></h3><div class="tw"><table><tbody>${r.map(([pre,label,h])=>`<tr><td class="mono" style="width:60px">${pre}</td><td style="width:34%">${label}</td><td><div style="display:flex;gap:8px;align-items:center"><div class="bar" style="flex:1;max-width:180px"><i style="width:${h.length/m*100}%"></i></div><span class="mono">${h.length}</span></div></td><td>${h.map(s=>`<span class="tag">${s.id}</span>`).join("")}</td></tr>`).join("")}</tbody></table></div></div>`}).join("")}</div>`};
+
+let selR=0;
+V.risks=()=>{const r=RISKS[selR],s=r[2]*r[3],L=lvl(s);
+ let heat=`<div class="heat">`;for(let i=5;i>=1;i--){heat+=`<div class="ax">${i}</div>`;for(let l=1;l<=5;l++){const here=RISKS.map((x,j)=>[x,j]).filter(([x])=>x[3]===i&&x[2]===l);heat+=`<div class="c ${lvl(i*l)[2]}">${here.map(([x,j])=>`<span class="dot ${j===selR?"on":""}" onclick="selR=${j};render()">${x[0]}</span>`).join("")}</div>`}}heat+=`<div></div>${[1,2,3,4,5].map(n=>`<div class="ax">${n}</div>`).join("")}</div><div class="note" style="display:flex;justify-content:space-between;margin-top:6px"><span>↑ Impact</span><span>Likelihood →</span></div>`;
+ return `<div class="vh"><div><h1>Risk register</h1><p>Scored on a 5×5 likelihood × impact matrix (RM-01). High and Critical risks require an approved treatment plan within 30 days (RM-03).</p></div></div>
+ <div class="grid g3"><div class="card tw"><table><thead><tr><th>ID</th><th>Risk</th><th>Owner</th><th>L</th><th>I</th><th>Score</th><th>Rating</th></tr></thead><tbody>
+ ${RISKS.map((x,j)=>{const q=lvl(x[2]*x[3]);return `<tr class="click" onclick="selR=${j};render()" style="${j===selR?"background:var(--accBg)":""}"><td class="mono">${x[0]}</td><td>${x[1]}</td><td>${x[5]}</td><td class="mono">${x[2]}</td><td class="mono">${x[3]}</td><td class="mono">${x[2]*x[3]}</td><td><span class="pill ${q[1]}">${q[0]}</span></td></tr>`}).join("")}
+ </tbody></table></div>
+ <div class="grid" style="align-content:start"><div class="card pad">${heat}</div>
+ <div class="card"><h3>${r[0]} · ${r[1]}</h3><div class="pad"><dl class="meta"><dt>Inherent</dt><dd>${s} · ${L[0]}</dd><dt>Owner</dt><dd>${r[5]}</dd><dt>Treatment</dt><dd>${r[4]}</dd><dt>Plan due</dt><dd>${s>=10?"30 days from identification":"Next quarterly review"}</dd></dl></div></div></div></div>`};
+
+let ef="all";
+V.evidence=()=>`<div class="vh"><div><h1>Evidence</h1><p>What an auditor would be shown for each control, and where the gaps are.</p></div>
+ <div class="seg">${[["all","All"],["impl","Implemented"],["part","Partial"],["gap","Gap"]].map(([k,l])=>`<button aria-pressed="${ef===k}" onclick="ef='${k}';render()">${l}${k!=="all"?` · ${cnt(k)}`:""}</button>`).join("")}</div></div>
+ <div class="card tw"><table><thead><tr><th>Control</th><th>Policy</th><th>Evidence</th><th>Status</th></tr></thead><tbody>
+ ${ALL.filter(s=>ef==="all"||EV[s.id][0]===ef).map(s=>`<tr><td class="mono">${s.id}</td><td class="mono note">${s.pol.code}</td><td>${esc(EV[s.id][1])}</td><td>${pill(EV[s.id][0])}</td></tr>`).join("")}
+ </tbody></table></div>`;
+
+const PH=[["Detect and report","Reported to SOC","IR-01",60],["Triage","Severity assigned","IR-02",90],["Contain","Workstation isolated","IR-03",240],["Eradicate","Malware removed","IR-04",480],["Recover","User restored","—",1440],["Post-incident review","Lessons recorded","IR-07",10080]];
+let irs=-1;
+const fmt=m=>m<60?m+" min":m<1440?Math.round(m/60)+" h":Math.round(m/1440)+" d";
+V.incidents=()=>`<div class="vh"><div><h1>Incident drill</h1><p>Walk a reported phishing case through the Incident Response Policy and check each step against its deadline.</p></div>
+ <div style="display:flex;gap:8px"><button class="btn" onclick="irs=-1;render()">Reset</button><button class="btn pri" ${irs>=PH.length-1?"disabled":""} onclick="irs++;render()">${irs<0?"Open incident":"Complete step"}</button></div></div>
+ <div class="grid g3"><div class="card"><h3>INC-2026-0412 · Phishing, credential harvest <span>${irs<0?"Not started":irs>=PH.length-1?"Closed":"In progress"}</span></h3><div class="pad tl">
+ ${PH.map((p,i)=>`<div class="${i<=irs?"done":i===irs+1&&irs>=0?"now":""}"><i></i><span>${p[0]}<span class="note"> · ${p[1]}</span></span><span class="mono note">${p[2]} · ≤ ${fmt(p[3])}</span></div>`).join("")}
+ </div></div>
+ <div class="card"><h3>Severity matrix</h3><table><tbody><tr><td class="mono">P1</td><td>Business-critical system or data breach</td><td class="mono">Contain ≤ 4 h</td></tr><tr><td class="mono">P2</td><td>Single user or host compromised</td><td class="mono">≤ 8 h</td></tr><tr><td class="mono">P3</td><td>Policy violation, no compromise</td><td class="mono">≤ 3 d</td></tr><tr><td class="mono">P4</td><td>Informational</td><td class="mono">Log only</td></tr></tbody></table></div></div>`;
+
+let ard={};
+V.access=()=>{const done=Object.keys(ard).length;
+ return `<div class="vh"><div><h1>Quarterly access review</h1><p>Q4 2026 certification for Finance ERP and infrastructure. Each line is checked against the Access Control Policy.</p></div><span class="pill ${done===AR.length?"ok":"neu"}">${done} of ${AR.length} decided</span></div>
+ <div class="card tw"><table><thead><tr><th>Account</th><th>Role</th><th>Access</th><th>Finding</th><th>Policy</th><th>Decision</th></tr></thead><tbody>
+ ${AR.map((a,i)=>`<tr><td class="mono">${a[0]}</td><td>${a[1]}</td><td>${a[2]}</td><td>${a[4]?`<span class="pill bad">${a[3]}</span>`:`<span class="pill ok">${a[3]}</span>`}</td><td class="mono note">${a[4]||"—"}</td><td><div class="seg">${["Keep","Revoke"].map(d=>`<button aria-pressed="${ard[i]===d}" onclick="ard[${i}]='${d}';render()">${d}</button>`).join("")}</div>${ard[i]&&((ard[i]==="Keep")===!!a[4])?`<div class="note" style="color:var(--bad);margin-top:4px">${a[4]?"Conflicts with "+a[4].split(" ")[0]:"Access matches role"}</div>`:""}</td></tr>`).join("")}
+ </tbody></table></div>`};
+
+let cs=3;
+V.classify=()=>{const L=LB[CL[cs][1]];
+ return `<div class="vh"><div><h1>Data handling</h1><p>Pick an information asset to see its label and the handling rules from the Data Classification Policy.</p></div></div>
+ <div class="grid g2"><div class="card tw"><table><thead><tr><th>Asset</th><th>Label</th></tr></thead><tbody>
+ ${CL.map((c,i)=>`<tr class="click" onclick="cs=${i};render()" style="${i===cs?"background:var(--accBg)":""}"><td>${c[0]}</td><td><span class="pill ${c[1]==="PUBLIC"?"ok":c[1]==="INTERNAL"?"neu":c[1]==="HIGHLY"?"bad":"warn"}">${LB[c[1]][0]}</span></td></tr>`).join("")}
+ </tbody></table></div>
+ <div class="card"><h3>${CL[cs][0]} <span>${L[0]}</span></h3><div class="pad"><p style="margin:0 0 10px;color:var(--ink2)">${L[1]}</p>${L[2].map(r=>`<div style="padding:7px 0;border-top:1px solid var(--line2)">${r}</div>`).join("")}</div></div></div>`};
+
+const TITLES={overview:"Overview",policies:"Policies",controls:"Controls",frameworks:"Frameworks",risks:"Risk register",evidence:"Evidence",incidents:"Incident drill",access:"Access review",classify:"Data handling"};
+function go(h){location.hash=h}
+function render(){let [v,arg]=(location.hash.slice(1)||"overview").split("/");if(!V[v])v="overview";
+ $("#view").innerHTML=V[v](arg);$("#crumb").textContent=TITLES[v];
+ document.querySelectorAll(".side a").forEach(a=>a.toggleAttribute("aria-current",a.getAttribute("href")==="#"+v));
+ if(v==="controls")ctRows();document.body.classList.remove("open")}
+$("#q").addEventListener("input",()=>{if(!location.hash.startsWith("#controls"))go("controls");else ctRows()});
+addEventListener("hashchange",()=>{render();scrollTo(0,0)});
+render();
+</script>
 </body>
 </html>
